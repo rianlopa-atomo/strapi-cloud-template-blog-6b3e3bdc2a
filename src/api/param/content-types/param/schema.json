@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "params",
+  "info": {
+    "singularName": "param",
+    "pluralName": "params",
+    "displayName": "param"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "key": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

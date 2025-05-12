@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payment_gateways",
+  "info": {
+    "singularName": "payment-gateway",
+    "pluralName": "payment-gateways",
+    "displayName": "Payment-Gateway"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Active": {
+      "type": "boolean"
+    }
+  }
+}
