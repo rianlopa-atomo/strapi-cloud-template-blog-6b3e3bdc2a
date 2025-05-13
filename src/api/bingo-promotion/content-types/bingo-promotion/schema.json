@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bingo_promotions",
+  "info": {
+    "singularName": "bingo-promotion",
+    "pluralName": "bingo-promotions",
+    "displayName": "bingo_promotion",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Price": {
+      "type": "decimal",
+      "required": true
+    },
+    "State": {
+      "type": "enumeration",
+      "enum": [
+        "Enabled",
+        "Disabled"
+      ],
+      "default": "Enabled",
+      "required": true
+    },
+    "Fecha_Inicio": {
+      "type": "datetime",
+      "required": true
+    },
+    "Fecha_Fin": {
+      "type": "datetime",
+      "required": true
+    },
+    "Order_Index": {
+      "type": "integer",
+      "required": false
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "bingo_bets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::bingo-bet.bingo-bet",
+      "mappedBy": "bingo_promotion_id"
+    }
+  }
+}

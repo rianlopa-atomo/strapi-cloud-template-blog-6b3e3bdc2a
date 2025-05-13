@@ -369,6 +369,88 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBingoBetBingoBet extends Struct.CollectionTypeSchema {
+  collectionName: 'bingo_bets';
+  info: {
+    description: '';
+    displayName: 'Bingo_bet';
+    pluralName: 'bingo-bets';
+    singularName: 'bingo-bet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Amount: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    bingo_promotion_id: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::bingo-promotion.bingo-promotion'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bingo-bet.bingo-bet'
+    > &
+      Schema.Attribute.Private;
+    Location: Schema.Attribute.String & Schema.Attribute.Required;
+    OperationId: Schema.Attribute.String & Schema.Attribute.Required;
+    PlayerId: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    PlayerName: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    Quantity: Schema.Attribute.Integer & Schema.Attribute.Required;
+    Timestamp: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBingoPromotionBingoPromotion
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bingo_promotions';
+  info: {
+    description: '';
+    displayName: 'bingo_promotion';
+    pluralName: 'bingo-promotions';
+    singularName: 'bingo-promotion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bingo_bets: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bingo-bet.bingo-bet'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Fecha_Fin: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    Fecha_Inicio: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    Image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bingo-promotion.bingo-promotion'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    Order_Index: Schema.Attribute.Integer;
+    Price: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    State: Schema.Attribute.Enumeration<['Enabled', 'Disabled']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Enabled'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiParamParam extends Struct.CollectionTypeSchema {
   collectionName: 'params';
   info: {
@@ -934,6 +1016,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::bingo-bet.bingo-bet': ApiBingoBetBingoBet;
+      'api::bingo-promotion.bingo-promotion': ApiBingoPromotionBingoPromotion;
       'api::param.param': ApiParamParam;
       'api::payment-gateway.payment-gateway': ApiPaymentGatewayPaymentGateway;
       'plugin::content-releases.release': PluginContentReleasesRelease;

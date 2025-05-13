@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bingo_bets",
+  "info": {
+    "singularName": "bingo-bet",
+    "pluralName": "bingo-bets",
+    "displayName": "Bingo_bet",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "OperationId": {
+      "type": "string",
+      "required": true
+    },
+    "PlayerId": {
+      "type": "biginteger",
+      "required": true
+    },
+    "PlayerName": {
+      "type": "string",
+      "required": true
+    },
+    "bingo_promotion_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::bingo-promotion.bingo-promotion",
+      "inversedBy": "bingo_bets"
+    },
+    "Location": {
+      "type": "string",
+      "required": true
+    },
+    "Quantity": {
+      "type": "integer",
+      "required": true
+    },
+    "Amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "Timestamp": {
+      "type": "datetime",
+      "required": true
+    }
+  }
+}
